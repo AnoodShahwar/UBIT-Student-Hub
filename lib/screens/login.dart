@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ubit_student_hub/screens/dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -62,6 +63,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      if (!value.contains('@')) {
+                        return 'Please enter a valid email';
+                      }
+                      return null;
+                    },
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Color.fromARGB(255, 214, 209, 209),
@@ -98,6 +108,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters';
+                      }
+                      return null;
+                    },
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
                       hintText: '••••••••',
@@ -146,7 +165,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DashboardScreen(),
+                            ),
+                          );
+                        }
                       },
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(
