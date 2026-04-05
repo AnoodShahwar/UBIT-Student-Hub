@@ -63,6 +63,12 @@ flutter:
     - assets/career.jpg
     - assets/meeting.jpg
     - assets/laptop.jpeg
+    - assets/algo.jpg
+    - assets/calc.jpg
+    - assets/keyboard.jpg
+    - assets/macbook.jpeg
+    - assets/watch.jpeg
+    - assets/pile.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

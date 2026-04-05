@@ -24,7 +24,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search, size: 20, color: Color(0xFF051D6D)),
+            icon: Icon(
+              Icons.search,
+              size: 20,
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
             onPressed: () {},
           ),
           Padding(
