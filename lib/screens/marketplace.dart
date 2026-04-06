@@ -196,7 +196,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  childAspectRatio: 0.75,
+                  childAspectRatio: 0.72,
                 ),
                 itemCount: products.length,
                 itemBuilder: (context, index) {
@@ -293,7 +293,7 @@ class ProductCard extends StatelessWidget {
                 child: Image.asset(
                   product.image,
                   width: double.infinity,
-                  height: 210,
+                  height: 130,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -337,6 +337,7 @@ class ProductCard extends StatelessWidget {
               ),
             ],
           ),
+
           Padding(
             padding: EdgeInsets.all(8),
             child: Column(
