@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ubit_student_hub/screens/login.dart';
+import 'package:ubit_student_hub/screens/marketplace.dart';
+import 'package:ubit_student_hub/screens/profile.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -13,7 +16,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.menu, size: 20, color: Color(0xFF051D6D)),
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu, size: 20, color: Color(0xFF051D6D)),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
         title: Text(
           'UBIT Hub',
           style: TextStyle(
@@ -36,12 +44,111 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: CircleAvatar(
               backgroundColor: Color(0xFF051D6D),
               child: Text(
-                'JD',
+                'AH',
                 style: TextStyle(fontSize: 12, color: Colors.white),
               ),
             ),
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            ListTile(
+              leading: Icon(Icons.settings, color: Color(0xFF051D6D)),
+              title: Text('Settings'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.info_outline, color: Color(0xFF051D6D)),
+              title: Text('About'),
+              onTap: () {},
+            ),
+            Spacer(),
+            ListTile(
+              leading: Icon(Icons.logout, color: Colors.red),
+              title: Text('Log Out', style: TextStyle(color: Colors.red)),
+              onTap: () {
+                Navigator.pop(context);
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Color.fromARGB(255, 241, 206, 211),
+                          radius: 30,
+                          child: Icon(
+                            Icons.logout,
+                            color: Colors.red,
+                            size: 28,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Sign out?',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Are you sure you want to end your session? You\'ll need to sign back in to access your student portal.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Color.fromARGB(255, 49, 49, 49),
+                          ),
+                        ),
+                        SizedBox(height: 24),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: OutlinedButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: Text(
+                                  'No, stay',
+                                  style: TextStyle(color: Color(0xFF051D6D)),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LoginScreen(),
+                                    ),
+                                    (route) => false,
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xFF051D6D),
+                                ),
+                                child: Text(
+                                  'Yes, sign out',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: 16),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -50,7 +157,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Welcome, Jordan',
+                'Welcome, Alex Harrison',
                 style: TextStyle(
                   fontSize: 27,
                   color: Color(0xFF051D6D),
@@ -193,6 +300,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
           setState(() {
             _currentIndex = index;
           });
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MarketplaceScreen()),
+            ).then((_) {
+              setState(() {
+                _currentIndex = 0;
+              });
+            });
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()),
+            ).then((_) {
+              setState(() {
+                _currentIndex = 0;
+              });
+            });
+          }
         },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -309,7 +435,7 @@ class NewsListItem extends StatelessWidget {
       title: Text(title, style: TextStyle(fontWeight: FontWeight.w900)),
       subtitle: Text(
         subtitle,
-        style: TextStyle(color: const Color.fromARGB(255, 92, 91, 91)),
+        style: TextStyle(color: Color.fromARGB(255, 92, 91, 91)),
       ),
       trailing: Icon(Icons.arrow_forward_ios, size: 14),
     );

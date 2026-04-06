@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ubit_student_hub/screens/marketplace.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -391,7 +392,16 @@ class _ProfileScreenState extends State<ProfileScreen>
         currentIndex: 2,
         selectedItemColor: Color(0xFF051D6D),
         unselectedItemColor: Colors.grey,
-        onTap: (index) {},
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.pop(context);
+          } else if (index == 1) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => MarketplaceScreen()),
+            );
+          }
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(

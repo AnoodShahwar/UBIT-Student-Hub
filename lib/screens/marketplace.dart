@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ubit_student_hub/screens/profile.dart';
 
 class Product {
   final String name;
@@ -219,7 +220,16 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
         currentIndex: 1,
         selectedItemColor: Color(0xFF051D6D),
         unselectedItemColor: Colors.grey,
-        onTap: (index) {},
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.pop(context);
+          } else if (index == 2) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()),
+            );
+          }
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
