@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ubit_student_hub/screens/login.dart';
+import 'package:ubit_student_hub/screens/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +9,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProfileScreen(),
+    );
   }
 }

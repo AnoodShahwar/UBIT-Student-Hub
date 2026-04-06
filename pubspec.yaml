@@ -69,6 +69,7 @@ flutter:
     - assets/macbook.jpeg
     - assets/watch.jpeg
     - assets/pile.jpg
+    - assets/avatar.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
